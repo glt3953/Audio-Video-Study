@@ -1,0 +1,8 @@
+iOS 为开发者提供的各个层次的音频播放框架，以便以后在你的应用中做技术选型：
+AVAudioPlayer：如果你要直接播放一个本地音频文件（无论是本地路径还是内存中的数据），使用 AVAudioPlayer 会是最佳选择；
+AVPlayer：如果是普通网络协议（HTTP、HLS）音频文件要直接播放，使用 AVPlayer 会是最佳选择；
+AudioQueue：但是如果你的输入是 PCM（比如视频播放器场景、RTC 等需要业务自己 Mix 或者处理 PCM 的场景），其实使用 AudioQueue 是适合的一种方式；
+AudioUnit：如果需要构造一个复杂的低延迟采集、播放、处理的音频系统，那么使用 AudioUnit（实际实现可能是使用 AUGraph 或者 AVAudioEngine 框架）会是最佳选择。
+
+https://github.com/zhanxiaokai/iOS-AudioPlayer
+https://github.com/zhanxiaokai/iOS-AudioRecorder

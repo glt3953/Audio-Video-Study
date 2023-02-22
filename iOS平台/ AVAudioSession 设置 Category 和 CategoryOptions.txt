@@ -1,0 +1,8 @@
+1.Category 是向系统描述应用需要的能力，常用的分类如下：
+AVAudioSessionCategoryPlayback：用于播放录制音乐或者其它声音的类别，如要在应用程序转换到后台时继续播放（锁屏情况下），在 xcode 中设置 UIBackgroundModes 即可。默认情况下，使用此类别意味着，应用的音频不可混合，激活音频会话将中断其它不可混合的音频会话。如要使用混音，则使用 AVAudioSessionCategoryOptionMixWithOthers。
+AVAudioSessionCategoryPlayAndRecord : 同时需要录音（输入）和播放（输出）音频的类别，例如 K 歌、RTC 场景。注意：用户必须打开音频录制权限（iPhone 麦克风权限）。
+
+2.CategoryOptions 是向系统设置类别的可选项，具体分类如下：
+AVAudioSessionCategoryOptionDefaultToSpeaker：此选项只能在使用 PlayAndRecord 类别时设置。它用于保证在没有使用其他配件（如耳机）的情况下，音频始终会路由至扬声器而不是听筒。而如果类别设置的是 Playback，系统会自动使用 Speaker 进行输出，无需进行此项设置。
+AVAudioSessionCategoryOptionAllowBluetooth：此选项代表音频录入和输出全部走蓝牙设备，仅可以为 PlayAndRecord 还有 Record 这两个类别设置这个选项，注意此时播放和录制的声音音质均为通话音质（16kHz），适用于 RTC 的通话场景，但不适用于 K 歌等需要高音质采集与播放的场景。
+AVAudioSessionCategoryOptionAllowBluetoothA2DP：此选项代表音频可以输出到高音质（立体声、仅支持音频输出不支持音频录入）的蓝牙设备中。如果使用 Playback 类别，系统将自动使用这个 A2DP 选项，如果使用 PlayAndRecord 类别，需要开发者自己手动设置这个选项，音频采集将使用机身内置麦克风（在需要高音质输出和输入的场景下可以设置成这种）。
